@@ -2,7 +2,7 @@
 ## functions do
 
 ## Write a short comment describing this function
-## To S
+## To store matrix & inverse value, with associated get and set method for respective values
 makeCacheMatrix <- function(x = matrix()) {
         inverse <- NULL
         set <-function(y) {
@@ -21,4 +21,13 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
+        inverse <-x$getinverse()
+        if(!is.null(inverse)){
+              message("getting cached data")
+              return (inverse)
+        }
+        data <- x$get()
+        inverse <- solve(data, ... )
+        x$setinverse(inverse)
+        inverse
 }
